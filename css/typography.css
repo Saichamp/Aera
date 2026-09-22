@@ -1,0 +1,68 @@
+/* ============================================================
+   AERA by Sai — Typography (Light Editorial)
+   ============================================================ */
+
+/* ── Display headings ── */
+.t-mega {
+  font-family: var(--font-sans);
+  font-size: var(--text-mega);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: var(--black);
+}
+
+.t-hero {
+  font-family: var(--font-sans);
+  font-size: var(--text-hero);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: var(--black);
+}
+
+.t-xl {
+  font-family: var(--font-sans);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--black);
+}
+
+.t-lg {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--black);
+}
+
+.t-md {
+  font-size: var(--text-md);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--black);
+}
+
+.t-base { font-size: var(--text-base); line-height: 1.65; }
+.t-sm   { font-size: var(--text-sm); line-height: 1.5; }
+.t-xs   { font-size: var(--text-xs); line-height: 1.4; }
+
+/* ── Colour modifiers ── */
+.t-accent    { color: var(--accent); }
+.t-muted     { color: var(--muted); }
+.t-white     { color: var(--white); }
+.t-white-80  { color: var(--white-80); }
+.t-upper     { text-transform: uppercase; letter-spacing: 0.1em; }
+.t-mono      { font-family: var(--font-mono); }
+
+/* ── Section overline label ── */
+.overline {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}

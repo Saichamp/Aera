@@ -1,0 +1,90 @@
+/* ============================================================
+   AERA by Sai — Design Tokens (Light Editorial Theme)
+   ============================================================ */
+
+:root {
+  /* ── Colour Palette ── */
+  --bg:            #f2f2ef;
+  --bg-surface:    #eaeae6;
+  --bg-raised:     #ffffff;
+  --bg-card:       #ffffff;
+  --bg-dark:       #0f0f0f;
+  --bg-blue:       #d4e4f7;
+
+  --accent:        #2563eb;
+  --accent-glow:   #1d4ed8;
+  --accent-dim:    rgba(37,99,235,0.08);
+  --accent-border: rgba(37,99,235,0.2);
+
+  --black:         #0f0f0f;
+  --black-80:      rgba(15,15,15,0.8);
+  --black-50:      rgba(15,15,15,0.5);
+  --black-20:      rgba(15,15,15,0.2);
+  --black-08:      rgba(15,15,15,0.08);
+  --black-04:      rgba(15,15,15,0.04);
+
+  --white:         #ffffff;
+  --white-80:      rgba(255,255,255,0.8);
+  --white-50:      rgba(255,255,255,0.5);
+  --white-20:      rgba(255,255,255,0.2);
+
+  --muted:         #888880;
+  --muted-light:   #aaaaaa;
+  --border:        rgba(15,15,15,0.1);
+  --border-strong: rgba(15,15,15,0.2);
+
+  /* ── Typography ── */
+  --font-display:  'Instrument Serif', 'Georgia', serif;
+  --font-sans:     'Inter', 'Helvetica Neue', sans-serif;
+  --font-body:     'Inter', sans-serif;
+  --font-mono:     'JetBrains Mono', monospace;
+
+  /* Display scale */
+  --text-mega:     clamp(60px, 9vw, 120px);
+  --text-hero:     clamp(44px, 6vw, 80px);
+  --text-xl:       clamp(28px, 3.5vw, 48px);
+  --text-lg:       clamp(20px, 2.5vw, 30px);
+  --text-md:       clamp(17px, 1.8vw, 20px);
+  --text-base:     16px;
+  --text-sm:       14px;
+  --text-xs:       12px;
+
+  /* ── Spacing ── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+  --space-32:  128px;
+
+  /* ── Radius ── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   20px;
+  --radius-2xl:  28px;
+  --radius-pill: 999px;
+
+  /* ── Shadows ── */
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md:   0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg:   0 8px 40px rgba(0,0,0,0.12);
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+
+  /* ── Transitions ── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 200ms;
+  --duration-mid:  400ms;
+  --duration-slow: 700ms;
+
+  /* ── Layout ── */
+  --max-w:       1200px;
+  --nav-h:       64px;
+}

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AERA by Sai — Tools for a Smarter You. Discover, learn and use the best AI tools for your studies, work, creativity and life." />
+  <meta name="keywords" content="AI tools, weekly AI, students AI, creators AI, developers AI, founders AI, AERA" />
+  <meta property="og:title" content="AERA by Sai — Tools for a Smarter You" />
+  <meta property="og:description" content="Discover, learn and use the best AI tools for your studies, work, creativity and life." />
+  <meta property="og:type" content="website" />
+  <title>AERA by Sai — Tools for a Smarter You</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/typography.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="#hero" class="nav-logo" aria-label="AERA by Sai — home">
+          <span class="nav-logo-main">AERA</span>
+          <span class="nav-logo-sub">by Sai</span>
+        </a>
+
+        <!-- Desktop links -->
+        <ul class="nav-links" role="list">
+          <li><a href="#this-week" class="nav-link">Discover</a></li>
+          <li><a href="#this-week" class="nav-link">Weeks</a></li>
+          <li><a href="#trending-tools" class="nav-link">Toolbox</a></li>
+          <li><a href="#lab-band" class="nav-link">Lab</a></li>
+          <li><a href="#footer-section" class="nav-link">About</a></li>
+        </ul>
+
+        <!-- Right: search + CTA + hamburger -->
+        <div class="nav-right">
+          <button class="nav-search-btn" aria-label="Search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
+          </button>
+          <a href="#footer-section" class="btn btn-primary" style="font-size:13px;padding:9px 18px;">
+            Join the Era →
+          </a>
+          <button id="nav-hamburger" class="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <nav id="mobile-drawer" aria-label="Mobile navigation">
+    <a href="#this-week" class="drawer-link">Discover</a>
+    <a href="#this-week" class="drawer-link">Weeks</a>
+    <a href="#trending-tools" class="drawer-link">Toolbox</a>
+    <a href="#lab-band" class="drawer-link">Lab</a>
+    <a href="#footer-section" class="drawer-link">About</a>
+    <div class="divider" style="margin:8px 0"></div>
+    <a href="#footer-section" class="btn btn-primary" style="width:fit-content;margin-top:8px;">Join the Era →</a>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section id="hero" aria-labelledby="hero-heading">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Left column -->
+        <div class="hero-left reveal">
+
+          <!-- Meta row -->
+          <div class="hero-meta-row">
+            <div class="hero-meta-since">
+              SINCE<br>2026
+            </div>
+            <div class="hero-meta-tags">
+              <span class="hero-meta-tag">AI TOOLS</span>
+              <span class="hero-meta-tag">IDEAS</span>
+              <span class="hero-meta-tag">PEOPLE</span>
+              <span class="hero-meta-tag">A BRIGHTER TOMORROW</span>
+            </div>
+            <span class="hero-meta-plus">+</span>
+          </div>
+
+          <!-- Headline -->
+          <h1 id="hero-heading" class="hero-headline">
+            Tools<br>
+            for a<br>
+            Smarter<br>
+            <span class="accent-word">You.</span>
+          </h1>
+
+          <!-- Sub -->
+          <p class="hero-sub">
+            Discover, learn and use the best AI tools for your studies, work, creativity and life.
+          </p>
+
+          <!-- CTAs -->
+          <div class="hero-actions">
+            <a href="#this-week" class="btn btn-primary" id="hero-cta-primary">
+              Explore This Week →
+            </a>
+            <a href="#" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:8px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><polygon points="10,8 16,12 10,16" fill="currentColor"/></svg>
+              Watch on YouTube
+            </a>
+          </div>
+
+          <!-- Scroll row -->
+          <div class="hero-scroll-row">
+            <span class="hero-pagination">01 / 04</span>
+            <div class="hero-scroll-indicator">
+              SCROLL
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M4 9l4 4 4-4"/></svg>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right column – editorial card grid -->
+        <div class="hero-right reveal" style="transition-delay:150ms">
+
+          <!-- Main photo card -->
+          <div class="hero-photo-card">
+            <img src="assets/sai.png" alt="Sai — AERA founder wearing white AERA hoodie with backpack, blue sky background" loading="eager" fetchpriority="high" style="object-position:center top;" />
+
+            <!-- Overlay italic text -->
+            <div class="hero-photo-overlay-text">
+              Same<br>People<br><strong style="font-style:normal;font-size:0.85em">Bigger</strong><br>Ideas.
+            </div>
+
+            <!-- Circle text decoration -->
+            <div class="hero-circle-text" style="position:absolute;top:16px;right:16px;">
+              <svg viewBox="0 0 90 90" fill="none">
+                <path id="circle-path" d="M45,45 m-35,0 a35,35 0 1,1 70,0 a35,35 0 1,1 -70,0" fill="none"/>
+                <text font-size="9" font-weight="700" letter-spacing="3" fill="rgba(255,255,255,0.7)" text-transform="uppercase">
+                  <textPath href="#circle-path">ENTER · EXPLORE · THE AI ERA · </textPath>
+                </text>
+              </svg>
+              <div class="hero-circle-center" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2">
+                  <path d="M5 5l14 14M19 5L5 19"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top-right area: Quote card -->
+          <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+
+            <div class="hero-quote-card">
+              <div class="card-label">AERA CURATED</div>
+              <div class="card-big-text">GOOD<br>IDEAS<br>BETTER<br>TOOLS</div>
+              <div class="card-brand">AERA</div>
+            </div>
+
+            <!-- Stats card -->
+            <div class="hero-stats-card">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-3);">
+                <div class="hero-stats-avatars">
+                  <div class="hero-avatar">👤</div>
+                  <div class="hero-avatar">👤</div>
+                  <div class="hero-avatar">👤</div>
+                  <div class="hero-avatar" style="background:var(--bg-surface);font-size:10px;font-weight:700;color:var(--muted);width:28px;height:28px;border-radius:50%;border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;margin-left:-8px;">+</div>
+                </div>
+              </div>
+              <div class="hero-stat-num">50K+</div>
+              <div class="hero-stat-label">Learners</div>
+            </div>
+
+          </div>
+
+          <!-- Bottom card spanning both columns -->
+          <div class="hero-sub-card" style="grid-column:1 / 3;">
+            <span class="hero-sub-card-num">/01</span>
+            <div class="hero-sub-card-divider"></div>
+            <div class="hero-sub-card-content">
+              <div class="hero-sub-card-title">STUDY · CREATE · BUILD · GROW</div>
+              <div class="hero-sub-card-line"></div>
+            </div>
+            <div class="yellow-dot"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Description row below grid -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-8);margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--border);flex-wrap:wrap;" class="reveal">
+        <p style="font-size:14px;color:var(--muted);line-height:1.65;max-width:360px;">
+          A curation of AI tools, workflows and ideas for Gen Z — built by Sai, for the generation that moves fast.
+        </p>
+        <div style="display:flex;align-items:center;gap:var(--space-6);">
+          <div style="display:flex;align-items:center;">
+            <div class="hero-avatar">👤</div>
+            <div class="hero-avatar">👤</div>
+            <div class="hero-avatar">👤</div>
+          </div>
+          <div>
+            <div style="font-size:20px;font-weight:800;letter-spacing:-0.02em;">50K+</div>
+            <div style="font-size:11px;color:var(--muted);">Learners</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       TICKER
+  ═══════════════════════════════════════════ -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-inner">
+      <span class="ticker-item">AERA <span class="ticker-dot"></span></span>
+      <span class="ticker-item">AI TOOLS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">WEEK 1 · STUDENTS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">WEEKLY DROP <span class="ticker-dot"></span></span>
+      <span class="ticker-item">CREATORS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">DEVELOPERS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">FOUNDERS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">FRESHERS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">AERA <span class="ticker-dot"></span></span>
+      <span class="ticker-item">AI TOOLS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">WEEK 1 · STUDENTS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">WEEKLY DROP <span class="ticker-dot"></span></span>
+      <span class="ticker-item">CREATORS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">DEVELOPERS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">FOUNDERS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">FRESHERS <span class="ticker-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       AUDIENCE STRIP
+  ═══════════════════════════════════════════ -->
+  <section id="audience-section" aria-label="Who is AERA for?">
+    <div class="audience-strip reveal-group">
+      <div class="audience-strip-item reveal" tabindex="0" role="button" aria-label="For Students">
+        <div class="audience-strip-icon">🎓</div>
+        <div class="audience-strip-label">Students</div>
+        <div class="audience-strip-sub">Study smarter</div>
+      </div>
+      <div class="audience-strip-item reveal" tabindex="0" role="button" aria-label="For Freshers">
+        <div class="audience-strip-icon">💼</div>
+        <div class="audience-strip-label">Freshers</div>
+        <div class="audience-strip-sub">Start your career</div>
+      </div>
+      <div class="audience-strip-item reveal" tabindex="0" role="button" aria-label="For Creators">
+        <div class="audience-strip-icon">📸</div>
+        <div class="audience-strip-label">Creators</div>
+        <div class="audience-strip-sub">Turn ideas into content</div>
+      </div>
+      <div class="audience-strip-item reveal" tabindex="0" role="button" aria-label="For Developers">
+        <div class="audience-strip-icon">&lt;/&gt;</div>
+        <div class="audience-strip-label">Developers</div>
+        <div class="audience-strip-sub">Build faster</div>
+      </div>
+      <div class="audience-strip-item reveal" tabindex="0" role="button" aria-label="For Founders">
+        <div class="audience-strip-icon">🚀</div>
+        <div class="audience-strip-label">Founders</div>
+        <div class="audience-strip-sub">Launch your ideas</div>
+      </div>
+      <div class="audience-strip-arrow">
+        <a href="#this-week" class="btn-circle" aria-label="Explore">→</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       THIS WEEK — STUDENT WEEK
+  ═══════════════════════════════════════════ -->
+  <section id="this-week" class="section" aria-labelledby="this-week-heading">
+    <div class="container">
+
+      <div class="this-week-grid">
+
+        <!-- Left panel: heading + CTA -->
+        <div class="this-week-left reveal">
+          <div>
+            <div class="this-week-label">This Week</div>
+            <h2 id="this-week-heading" class="this-week-heading">
+              STUDENT<br>
+              WEEK <span class="this-week-asterisk">✳</span>
+            </h2>
+          </div>
+
+          <p class="this-week-desc">
+            5 AI tools. 7 days. One smarter you.
+          </p>
+
+          <a href="#trending-tools" class="this-week-cta">
+            View Full Week →
+          </a>
+
+          <div class="this-week-social">
+            <div class="this-week-avatars">
+              <div class="this-week-avatar">👤</div>
+              <div class="this-week-avatar">👤</div>
+              <div class="this-week-avatar">👤</div>
+            </div>
+            <div class="this-week-social-text">
+              <strong>10K+ students</strong><br>
+              exploring AI together.
+            </div>
+          </div>
+        </div>
+
+        <!-- Center panel: image + tools list -->
+        <div class="this-week-center reveal" style="transition-delay:100ms">
+          <div class="this-week-image">
+            <img src="assets/student_week_notebook.png" alt="Notebook with pen - Better Notes Brighter Future" loading="lazy" />
+          </div>
+
+          <div class="this-week-tools-list">
+            <div class="this-week-tool-row">
+              <span class="this-week-tool-num">01</span>
+              <span class="this-week-tool-cat">Research</span>
+              <span class="this-week-tool-name">Perplexity</span>
+              <span class="this-week-tool-arrow">↗</span>
+            </div>
+            <div class="this-week-tool-row">
+              <span class="this-week-tool-num">02</span>
+              <span class="this-week-tool-cat">Notes</span>
+              <span class="this-week-tool-name">NotebookLM</span>
+              <span class="this-week-tool-arrow">↗</span>
+            </div>
+            <div class="this-week-tool-row">
+              <span class="this-week-tool-num">03</span>
+              <span class="this-week-tool-cat">Presentations</span>
+              <span class="this-week-tool-name">Gamma</span>
+              <span class="this-week-tool-arrow">↗</span>
+            </div>
+            <div class="this-week-tool-row">
+              <span class="this-week-tool-num">04</span>
+              <span class="this-week-tool-cat">Study</span>
+              <span class="this-week-tool-name">Quizlet AI</span>
+              <span class="this-week-tool-arrow">↗</span>
+            </div>
+            <div class="this-week-tool-row">
+              <span class="this-week-tool-num">05</span>
+              <span class="this-week-tool-cat">Productivity</span>
+              <span class="this-week-tool-name">Motion</span>
+              <span class="this-week-tool-arrow">↗</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right panel: quote -->
+        <div class="this-week-right reveal" style="transition-delay:200ms">
+          <div class="quote-mark">"</div>
+          <div class="this-week-quote">
+            Discipline<br>today.<br>A smarter<br>tomorrow.
+          </div>
+          <div style="height:1px;background:rgba(15,15,15,0.12);margin:var(--space-6) 0;"></div>
+          <div class="this-week-quote-attr">AERA</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       TRENDING TOOLS
+  ═══════════════════════════════════════════ -->
+  <section id="trending-tools" aria-labelledby="trending-heading">
+    <div class="container">
+
+      <div class="trending-header reveal">
+        <div class="trending-title">
+          <h2 id="trending-heading">TRENDING<br>TOOLS</h2>
+          <span class="trending-arrow-icon">↗</span>
+        </div>
+        <a href="#" class="btn-arrow">View All <span class="arrow">→</span></a>
+      </div>
+
+      <div class="trending-strip reveal" style="transition-delay:100ms">
+        <div class="trending-item">
+          <div class="trending-item-icon">
+            <span style="font-size:24px;">🤖</span>
+          </div>
+          <div class="trending-item-name">ChatGPT</div>
+          <div class="trending-item-sub">All-in-one assistant</div>
+        </div>
+        <div class="trending-item">
+          <div class="trending-item-icon">
+            <span style="font-size:24px;">📋</span>
+          </div>
+          <div class="trending-item-name">Notion</div>
+          <div class="trending-item-sub">Write. Plan. Organize.</div>
+        </div>
+        <div class="trending-item">
+          <div class="trending-item-icon">
+            <span style="font-size:24px;">🎨</span>
+          </div>
+          <div class="trending-item-name">Midjourney</div>
+          <div class="trending-item-sub">AI image generation</div>
+        </div>
+        <div class="trending-item">
+          <div class="trending-item-icon">
+            <span style="font-size:24px;">🎬</span>
+          </div>
+          <div class="trending-item-name">Runway</div>
+          <div class="trending-item-sub">AI video creation</div>
+        </div>
+        <div class="trending-item">
+          <div class="trending-item-icon">
+            <span style="font-size:24px;">✨</span>
+          </div>
+          <div class="trending-item-name">Claude</div>
+          <div class="trending-item-sub">Thoughtful AI</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       AERA LAB BAND
+  ═══════════════════════════════════════════ -->
+  <section id="lab-band" class="section" aria-labelledby="lab-heading" style="padding-top:var(--space-16)">
+    <div class="container">
+
+      <div class="lab-band-grid">
+
+        <!-- Dark: We test. You learn. -->
+        <div class="lab-dark-card reveal">
+          <div class="lab-dark-card-tape">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+          <div class="lab-dark-card-content">
+            <div class="overline">AERA LAB</div>
+            <h3 id="lab-heading">We test.<br>You learn.</h3>
+            <p>Real experiments. Real results. No fluff.</p>
+          </div>
+          <div class="lab-dark-card-bottom">
+            <a href="#" class="btn-circle btn-circle-dark" style="border-color:rgba(255,255,255,0.3);color:var(--white);" aria-label="Explore AERA Lab">↗</a>
+          </div>
+        </div>
+
+        <!-- Image card -->
+        <div class="lab-image-card reveal" style="transition-delay:150ms">
+          <img src="assets/image.png" alt="Sai — AERA founder" style="filter:grayscale(20%) contrast(1.05);opacity:0.9;" loading="lazy" />
+          <div class="lab-image-card-overlay"></div>
+          <div class="lab-image-card-brand">
+            <div class="lab-image-brand-name">AERA</div>
+            <div class="lab-image-brand-sub">by Sai</div>
+          </div>
+          <div style="position:absolute;top:var(--space-4);left:var(--space-4);">
+            <div style="width:32px;height:4px;background:var(--black);border-radius:2px;transform:rotate(-45deg);"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER / NEWSLETTER
+  ═══════════════════════════════════════════ -->
+  <section id="footer-section" aria-label="Join AERA and newsletter signup">
+    <div class="container" style="padding-bottom:var(--space-4);">
+
+      <div class="footer-grid reveal">
+
+        <!-- Left: lifestyle dark panel -->
+        <div class="footer-lifestyle">
+          <img src="assets/sai.png" alt="" aria-hidden="true" style="object-position:center top;" />
+          <div class="footer-lifestyle-content">
+            <div class="footer-lifestyle-text">
+              Create<br>Explore<br>Grow<br>Repeat.
+            </div>
+            <div class="footer-lifestyle-bottom">
+              <div class="yellow-dot"></div>
+              <div style="width:40px;height:2px;background:rgba(255,255,255,0.3);"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center: newsletter -->
+        <div class="footer-newsletter">
+          <div>
+            <h3 id="newsletter-heading">Join the AI Era</h3>
+            <p>Get weekly tools, insights and resources.</p>
+          </div>
+
+          <form class="newsletter-form" aria-labelledby="newsletter-heading" onsubmit="return false;">
+            <div class="newsletter-input-row">
+              <input
+                id="newsletter-email"
+                type="email"
+                class="newsletter-input"
+                placeholder="Enter your email"
+                aria-label="Email address"
+                autocomplete="email"
+              />
+              <button type="submit" class="newsletter-btn" id="newsletter-submit">
+                Subscribe →
+              </button>
+            </div>
+          </form>
+
+          <div class="footer-socials">
+            <a href="#" class="footer-social-link" aria-label="Follow on Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+              Instagram
+            </a>
+            <a href="#" class="footer-social-link" aria-label="Watch on YouTube">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20.06 12 20.06 12 20.06s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02" fill="currentColor" stroke="none"/></svg>
+              YouTube
+            </a>
+            <a href="#" class="footer-social-link" aria-label="Follow on X / Twitter">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              X (Twitter)
+            </a>
+            <a href="#" class="footer-social-link" aria-label="Connect on LinkedIn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4.5A2.5 2.5 0 0117 15v2"/><path d="M12 10v7"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: brand panel -->
+        <div class="footer-brand-panel">
+          <img src="assets/sai.png" alt="" aria-hidden="true" style="object-position:center top;filter:grayscale(25%);" />
+          <div class="footer-brand-content">
+            <div class="footer-brand-top">
+              <span class="footer-brand-year">/2026</span>
+            </div>
+            <div>
+              <div class="footer-brand-logo">AERA</div>
+              <div class="footer-brand-sub">by Sai</div>
+            </div>
+            <div class="footer-brand-tagline">
+              Same People.<br>Bigger Ideas.
+            </div>
+            <div>
+              <a href="#this-week" class="footer-brand-arrow" aria-label="Explore this week">→</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom nav -->
+      <nav class="footer-bottom-nav" aria-label="Footer navigation">
+        <a href="#this-week" class="footer-bottom-link">Discover</a>
+        <a href="#this-week" class="footer-bottom-link">Weeks</a>
+        <a href="#trending-tools" class="footer-bottom-link">Toolbox</a>
+        <a href="#lab-band" class="footer-bottom-link">Lab</a>
+        <a href="#footer-section" class="footer-bottom-link">About</a>
+        <a href="mailto:hello@aerabysai.com" class="footer-bottom-link">Contact</a>
+      </nav>
+
+      <p class="footer-copy">© 2026 AERA by Sai. Built with curiosity &amp; caffeine.</p>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════════ -->
+  <script>
+    // ── Navigation scroll effect ──
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // ── Mobile hamburger ──
+    const hamburger = document.getElementById('nav-hamburger');
+    const drawer    = document.getElementById('mobile-drawer');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      drawer.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+    });
+
+    // Close drawer on link click
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        drawer.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ── Intersection Observer — reveal animations ──
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // ── Newsletter ──
+    const form = document.querySelector('.newsletter-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = document.getElementById('newsletter-email');
+        const btn   = document.getElementById('newsletter-submit');
+        if (!input.value.includes('@')) {
+          input.style.borderColor = '#ef4444';
+          setTimeout(() => { input.style.borderColor = ''; }, 2000);
+          return;
+        }
+        btn.textContent = '✓ Subscribed!';
+        btn.style.background = '#16a34a';
+        input.value = '';
+        setTimeout(() => {
+          btn.textContent = 'Subscribe →';
+          btn.style.background = '';
+        }, 3000);
+      });
+    }
+
+    // ── Audience strip hover highlight ──
+    document.querySelectorAll('.audience-strip-item').forEach(item => {
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.location.hash = '#this-week';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

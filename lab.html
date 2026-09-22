@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AERA Lab — Real AI experiments, deep dives, and honest workflow breakdowns by Sai. No hype, just results." />
+  <meta property="og:title" content="AERA Lab — We Test. You Learn." />
+  <meta property="og:type" content="website" />
+  <title>Lab — AERA by Sai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/typography.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <style>
+    /* ══ LAB PAGE ══ */
+    .page-hero {
+      padding-top: calc(var(--nav-h) + var(--space-12));
+      padding-bottom: var(--space-10);
+      border-bottom: 1.5px solid var(--black);
+      background: var(--bg);
+    }
+    .page-eyebrow { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); }
+    .page-eyebrow-line { width: 28px; height: 1.5px; background: var(--muted); }
+    .page-eyebrow-text { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted); }
+    .page-title { font-size: clamp(52px, 7vw, 96px); font-weight: 800; line-height: 0.92; letter-spacing: -0.035em; color: var(--black); }
+    .page-title .accent { color: var(--accent); }
+    .page-desc { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 440px; margin-top: var(--space-5); }
+    .page-hero-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-8); align-items: end; }
+    @media (min-width: 768px) { .page-hero-grid { grid-template-columns: 1fr auto; } }
+    .page-stats { display: flex; gap: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border); margin-top: var(--space-8); }
+    .page-stat-num { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; color: var(--black); }
+    .page-stat-label { font-size: 10px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; }
+
+    /* Lab tag filter */
+    .lab-filter-bar {
+      display: flex; gap: var(--space-2);
+      overflow-x: auto; scrollbar-width: none;
+      padding: var(--space-5) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .lab-filter-bar::-webkit-scrollbar { display: none; }
+    .lab-filter-chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 7px 14px; font-size: 12px; font-weight: 700;
+      border: 1.5px solid var(--border); color: var(--muted);
+      white-space: nowrap; background: transparent; cursor: pointer;
+      transition: all var(--duration-fast);
+    }
+    .lab-filter-chip:hover { border-color: var(--black); color: var(--black); }
+    .lab-filter-chip.active { background: var(--black); color: var(--white); border-color: var(--black); }
+
+    /* Featured article */
+    .lab-featured {
+      display: grid;
+      grid-template-columns: 1fr;
+      border: 1.5px solid var(--black);
+      margin: var(--space-8) 0;
+      cursor: pointer;
+      transition: background var(--duration-fast);
+    }
+    @media (min-width: 768px) { .lab-featured { grid-template-columns: 1fr 1fr; } }
+    .lab-featured:hover { background: var(--bg-surface); }
+
+    .lab-featured-image {
+      min-height: 300px;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+      border-right: 1.5px solid var(--black);
+    }
+    .lab-featured-image img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      opacity: 0.6;
+      display: block;
+    }
+    .lab-featured-image-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(15,15,15,0.5) 0%, transparent 60%);
+    }
+    .lab-featured-badge {
+      position: absolute; top: var(--space-5); left: var(--space-5);
+      background: var(--accent); color: var(--white);
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      padding: 4px 10px;
+    }
+
+    .lab-featured-content {
+      padding: var(--space-8);
+      display: flex; flex-direction: column;
+      justify-content: space-between; gap: var(--space-6);
+    }
+    .lab-featured-index {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--muted); font-family: var(--font-mono);
+    }
+    .lab-featured-title {
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 800; letter-spacing: -0.02em;
+      line-height: 1.15; color: var(--black);
+      transition: color var(--duration-fast);
+    }
+    .lab-featured-text {
+      font-size: 14px; color: var(--muted); line-height: 1.65;
+      transition: color var(--duration-fast);
+    }
+    .lab-featured-meta {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border);
+      font-size: 11px; color: var(--muted);
+      font-family: var(--font-mono);
+      transition: all var(--duration-fast);
+    }
+    .lab-featured-cta {
+      display: inline-flex; align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      background: var(--black); color: var(--white);
+      font-size: 14px;
+      transition: all var(--duration-fast);
+    }
+
+    /* Article grid */
+    .lab-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      border: 1.5px solid var(--black);
+      border-top: none;
+    }
+    @media (min-width: 640px) { .lab-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .lab-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .lab-card {
+      display: flex; flex-direction: column;
+      padding: var(--space-6);
+      border-right: 1.5px solid var(--black);
+      border-bottom: 1.5px solid var(--black);
+      background: var(--white);
+      cursor: pointer;
+      transition: background var(--duration-fast), color var(--duration-fast);
+    }
+    @media (min-width: 900px) { .lab-card:nth-child(3n) { border-right: none; } }
+    @media (min-width: 640px) and (max-width: 899px) { .lab-card:nth-child(2n) { border-right: none; } }
+    @media (max-width: 639px) { .lab-card { border-right: none; } }
+
+    .lab-card:hover { background: var(--bg-surface); }
+    .lab-card:hover .lab-card-arrow { background: var(--black); color: var(--white); border-color: var(--black); }
+
+    .lab-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-4); }
+    .lab-card-badge {
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 3px 8px; background: var(--black-04);
+      color: var(--black); transition: all var(--duration-fast);
+    }
+    .lab-card-idx { font-size: 10px; font-weight: 700; color: var(--muted); font-family: var(--font-mono); }
+    .lab-card-title { font-size: 16px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.25; margin-bottom: var(--space-3); }
+    .lab-card-text { font-size: 13px; color: var(--muted); line-height: 1.55; flex: 1; }
+    .lab-card-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: var(--space-5); padding-top: var(--space-4);
+      border-top: 1px solid var(--border);
+      font-size: 11px; color: var(--muted);
+      font-family: var(--font-mono);
+      transition: all var(--duration-fast);
+    }
+    .lab-card-arrow {
+      width: 28px; height: 28px;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; color: var(--muted);
+      flex-shrink: 0;
+      transition: all var(--duration-fast);
+    }
+
+    /* CTA band */
+    .lab-cta-band {
+      border: 1.5px solid var(--black);
+      border-top: none;
+      padding: var(--space-10) var(--space-10);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-8);
+      align-items: center;
+      background: var(--bg-surface);
+      margin-bottom: var(--space-16);
+    }
+    @media (max-width: 640px) { .lab-cta-band { grid-template-columns: 1fr; } }
+    .lab-cta-band-title { font-size: clamp(20px, 2.5vw, 28px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+    .lab-cta-band-sub { font-size: 13px; color: var(--muted); margin-top: var(--space-2); line-height: 1.5; }
+
+    .breadcrumb { display: flex; align-items: center; gap: var(--space-2); font-size: 12px; margin-bottom: var(--space-6); }
+    .breadcrumb a { color: rgba(255,255,255,0.4); transition: color var(--duration-fast); }
+    .breadcrumb a:hover { color: var(--white); }
+    .breadcrumb-sep { color: rgba(255,255,255,0.2); }
+    .breadcrumb span:last-child { color: rgba(255,255,255,0.7); }
+
+    /* hidden */
+    .lab-card[data-hidden] { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo" aria-label="AERA by Sai — home">
+          <span class="nav-logo-main">AERA</span><span class="nav-logo-sub">by Sai</span>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html#this-week" class="nav-link">Discover</a></li>
+          <li><a href="weeks.html" class="nav-link">Weeks</a></li>
+          <li><a href="toolbox.html" class="nav-link">Toolbox</a></li>
+          <li><a href="lab.html" class="nav-link" style="color:var(--black);font-weight:700;">Lab</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+        <div class="nav-right">
+          <button class="nav-search-btn" aria-label="Search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
+          </button>
+          <a href="index.html#footer-section" class="btn btn-primary" style="font-size:13px;padding:9px 18px;">Join the Era →</a>
+          <button id="nav-hamburger" class="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav id="mobile-drawer" aria-label="Mobile navigation">
+    <a href="index.html#this-week" class="drawer-link">Discover</a>
+    <a href="weeks.html" class="drawer-link">Weeks</a>
+    <a href="toolbox.html" class="drawer-link">Toolbox</a>
+    <a href="lab.html" class="drawer-link">Lab</a>
+    <a href="about.html" class="drawer-link">About</a>
+    <div class="divider" style="margin:8px 0"></div>
+    <a href="index.html#footer-section" class="btn btn-primary" style="width:fit-content;margin-top:8px;">Join the Era →</a>
+  </nav>
+
+  <!-- PAGE HERO — dark -->
+  <section class="page-hero" aria-labelledby="lab-page-title">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb" style="color:var(--muted);">
+        <a href="index.html" style="color:var(--muted);">Home</a><span style="color:var(--muted-light);">/</span><span>Lab</span>
+      </nav>
+      <div class="page-hero-grid">
+        <div class="reveal">
+          <div class="page-eyebrow">
+            <div class="page-eyebrow-line"></div>
+            <span class="page-eyebrow-text">Real Tests. Real Results.</span>
+          </div>
+          <h1 id="lab-page-title" class="page-title">AERA<br><span class="accent">Lab.</span></h1>
+          <p class="page-desc">We run real experiments with AI tools so you don't have to. Honest breakdowns, workflow guides, and deep dives — no hype.</p>
+          <div class="page-stats">
+            <div><div class="page-stat-num">8</div><div class="page-stat-label">Articles</div></div>
+            <div><div class="page-stat-num">3</div><div class="page-stat-label">Experiments</div></div>
+            <div><div class="page-stat-num">2</div><div class="page-stat-label">Workflows</div></div>
+          </div>
+        </div>
+        <div class="reveal" style="transition-delay:150ms;">
+          <div style="border:1px solid var(--border);padding:var(--space-6);min-width:200px;background:var(--white);">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--muted);margin-bottom:var(--space-4);">Categories</div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+              <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);">
+                <span style="font-size:13px;font-weight:700;color:var(--black);">Deep Dive</span><span style="font-size:11px;font-family:var(--font-mono);color:var(--muted);">03</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);">
+                <span style="font-size:13px;font-weight:700;color:var(--black);">Experiment</span><span style="font-size:11px;font-family:var(--font-mono);color:var(--muted);">03</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:6px 0;">
+                <span style="font-size:13px;font-weight:700;color:var(--black);">Workflow</span><span style="font-size:11px;font-family:var(--font-mono);color:var(--muted);">02</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-inner">
+      <span class="ticker-item">WE TEST <span class="ticker-dot"></span></span>
+      <span class="ticker-item">YOU LEARN <span class="ticker-dot"></span></span>
+      <span class="ticker-item">REAL RESULTS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">NO FLUFF <span class="ticker-dot"></span></span>
+      <span class="ticker-item">AERA LAB <span class="ticker-dot"></span></span>
+      <span class="ticker-item">WE TEST <span class="ticker-dot"></span></span>
+      <span class="ticker-item">YOU LEARN <span class="ticker-dot"></span></span>
+      <span class="ticker-item">REAL RESULTS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">NO FLUFF <span class="ticker-dot"></span></span>
+      <span class="ticker-item">AERA LAB <span class="ticker-dot"></span></span>
+    </div>
+  </div>
+
+  <main style="padding-bottom:0;">
+    <div class="container">
+
+      <!-- Filter bar -->
+      <div class="lab-filter-bar reveal" role="group" aria-label="Filter articles">
+        <button class="lab-filter-chip active" data-filter="all">All</button>
+        <button class="lab-filter-chip" data-filter="Deep Dive">Deep Dive</button>
+        <button class="lab-filter-chip" data-filter="Experiment">Experiment</button>
+        <button class="lab-filter-chip" data-filter="Workflow">Workflow</button>
+      </div>
+
+      <!-- Featured article -->
+      <div class="lab-featured reveal" id="lab-featured" aria-label="Featured article">
+        <div class="lab-featured-image">
+          <img src="assets/sai.png" alt="AERA Lab — Featured" />
+          <div class="lab-featured-image-overlay"></div>
+          <div class="lab-featured-badge">⭐ Featured</div>
+        </div>
+        <div class="lab-featured-content">
+          <div>
+            <div class="lab-featured-index">LAB-01</div>
+            <h2 class="lab-featured-title" style="margin-top:var(--space-3);">
+              ChatGPT vs Perplexity: Which should students use in 2026?
+            </h2>
+            <p class="lab-featured-text" style="margin-top:var(--space-4);">
+              We ran both through 40 real student questions. The results surprised us — one clearly wins for research, the other for creative work. Inside: our full methodology, prompts, and a side-by-side scorecard.
+            </p>
+          </div>
+          <div class="lab-featured-meta">
+            <span>Sep 18, 2026 · 6 min read</span>
+            <span class="lab-featured-cta">↗</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article grid -->
+      <div class="lab-grid" id="lab-grid">
+
+        <div class="lab-card reveal" data-tag="Experiment">
+          <div class="lab-card-top">
+            <span class="lab-card-badge">Experiment</span>
+            <span class="lab-card-idx">LAB-02</span>
+          </div>
+          <div class="lab-card-title">We used 5 AI tools to write a college assignment. Here's what happened.</div>
+          <div class="lab-card-text">One tool wrote it in 3 minutes. Another needed so much prompting it took longer than doing it manually. Honest breakdown inside.</div>
+          <div class="lab-card-meta">
+            <span>Sep 12, 2026 · 8 min</span>
+            <span class="lab-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="lab-card reveal" data-tag="Workflow" style="transition-delay:70ms">
+          <div class="lab-card-top">
+            <span class="lab-card-badge">Workflow</span>
+            <span class="lab-card-idx">LAB-03</span>
+          </div>
+          <div class="lab-card-title">The AI Resume Stack: 4 tools working together for fresher job hunts.</div>
+          <div class="lab-card-text">We combined Rezi + LinkedIn AI + Perplexity + ChatGPT into a single workflow. From bare CV to interview invite in 72 hours.</div>
+          <div class="lab-card-meta">
+            <span>Sep 05, 2026 · 5 min</span>
+            <span class="lab-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="lab-card reveal" data-tag="Deep Dive" style="transition-delay:140ms">
+          <div class="lab-card-top">
+            <span class="lab-card-badge">Deep Dive</span>
+            <span class="lab-card-idx">LAB-04</span>
+          </div>
+          <div class="lab-card-title">NotebookLM vs Notion AI: Which is actually better for studying?</div>
+          <div class="lab-card-text">Both claim to supercharge your notes. We tested them on 3 different subjects with real university-level content to find out.</div>
+          <div class="lab-card-meta">
+            <span>Aug 28, 2026 · 7 min</span>
+            <span class="lab-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="lab-card reveal" data-tag="Experiment" style="transition-delay:70ms">
+          <div class="lab-card-top">
+            <span class="lab-card-badge">Experiment</span>
+            <span class="lab-card-idx">LAB-05</span>
+          </div>
+          <div class="lab-card-title">Can Runway Gen-3 actually replace stock footage? We tested it.</div>
+          <div class="lab-card-text">We replaced 10 stock video clips in a real YouTube video with Runway outputs. The before/after difference was shocking.</div>
+          <div class="lab-card-meta">
+            <span>Aug 20, 2026 · 6 min</span>
+            <span class="lab-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="lab-card reveal" data-tag="Deep Dive" style="transition-delay:140ms">
+          <div class="lab-card-top">
+            <span class="lab-card-badge">Deep Dive</span>
+            <span class="lab-card-idx">LAB-06</span>
+          </div>
+          <div class="lab-card-title">The honest truth about Cursor after 30 days as a solo developer.</div>
+          <div class="lab-card-text">I replaced VS Code with Cursor for an entire month. What I gained in productivity, what broke, and whether I'm staying.</div>
+          <div class="lab-card-meta">
+            <span>Aug 10, 2026 · 9 min</span>
+            <span class="lab-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="lab-card reveal" data-tag="Workflow">
+          <div class="lab-card-top">
+            <span class="lab-card-badge">Workflow</span>
+            <span class="lab-card-idx">LAB-07</span>
+          </div>
+          <div class="lab-card-title">How founders are using Clay + ChatGPT for cold outreach that actually converts.</div>
+          <div class="lab-card-text">A breakdown of the exact workflow 3 early-stage founders used to book 40+ sales calls in one week with an AI stack.</div>
+          <div class="lab-card-meta">
+            <span>Aug 02, 2026 · 5 min</span>
+            <span class="lab-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="lab-card reveal" data-tag="Deep Dive" style="transition-delay:70ms">
+          <div class="lab-card-top">
+            <span class="lab-card-badge">Deep Dive</span>
+            <span class="lab-card-idx">LAB-08</span>
+          </div>
+          <div class="lab-card-title">ElevenLabs vs real voiceover: Can anyone tell the difference now?</div>
+          <div class="lab-card-text">We played AI-generated audio and real narration to 50 people. The results say everything about where AI voice is headed.</div>
+          <div class="lab-card-meta">
+            <span>Jul 25, 2026 · 4 min</span>
+            <span class="lab-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="lab-card reveal" data-tag="Experiment" style="transition-delay:140ms">
+          <div class="lab-card-top">
+            <span class="lab-card-badge">Experiment</span>
+            <span class="lab-card-idx">LAB-09</span>
+          </div>
+          <div class="lab-card-title">We built a full product landing page using only AI tools. Here's the honest cost.</div>
+          <div class="lab-card-text">Design with Midjourney, copy with ChatGPT, dev with Cursor, deployment with Vercel. Total time: 4 hours. Total cost: ₹0.</div>
+          <div class="lab-card-meta">
+            <span>Jul 15, 2026 · 7 min</span>
+            <span class="lab-card-arrow">↗</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTA Band -->
+      <div class="lab-cta-band reveal">
+        <div>
+          <div class="lab-cta-band-title">Want to suggest an experiment?</div>
+          <div class="lab-cta-band-sub">Got an AI tool you want us to test? We read every suggestion and run the best ones.</div>
+        </div>
+        <a href="about.html#contact" class="btn btn-primary" style="white-space:nowrap;flex-shrink:0;">
+          Suggest a Test →
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1.5px solid var(--black);padding:var(--space-8) 0;" role="contentinfo">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);">
+        <a href="index.html" class="nav-logo">
+          <span class="nav-logo-main">AERA</span><span class="nav-logo-sub">by Sai</span>
+        </a>
+        <nav style="display:flex;gap:var(--space-6);flex-wrap:wrap;">
+          <a href="index.html" style="font-size:12px;color:var(--muted);">Home</a>
+          <a href="weeks.html" style="font-size:12px;color:var(--muted);">Weeks</a>
+          <a href="toolbox.html" style="font-size:12px;color:var(--muted);">Toolbox</a>
+          <a href="lab.html" style="font-size:12px;color:var(--black);font-weight:700;">Lab</a>
+          <a href="about.html" style="font-size:12px;color:var(--muted);">About</a>
+        </nav>
+        <p style="font-size:12px;color:var(--muted-light);">© 2026 AERA by Sai</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+    const hamburger = document.getElementById('nav-hamburger');
+    const drawer = document.getElementById('mobile-drawer');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      drawer.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('open'); drawer.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }));
+    const reveals = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); ro.unobserve(e.target); } }), { threshold: 0.08 });
+    reveals.forEach(el => ro.observe(el));
+
+    // Filter
+    const labCards = Array.from(document.querySelectorAll('.lab-card'));
+    document.querySelectorAll('.lab-filter-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.lab-filter-chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        labCards.forEach(card => {
+          const tag = card.dataset.tag;
+          card.style.display = (filter === 'all' || tag === filter) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About AERA by Sai — the story behind the platform, our mission, core principles, and the creator building it." />
+  <meta property="og:title" content="About — AERA by Sai" />
+  <meta property="og:type" content="website" />
+  <title>About — AERA by Sai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/typography.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <style>
+    /* ══ ABOUT PAGE ══ */
+
+    /* Hero — split layout */
+    .about-hero {
+      padding-top: var(--nav-h);
+      border-bottom: 1.5px solid var(--black);
+    }
+    .about-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) { .about-hero-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* Left: image half */
+    .about-hero-image {
+      position: relative;
+      min-height: 60vh;
+      background: var(--black);
+      overflow: hidden;
+      border-right: 1.5px solid var(--black);
+    }
+    .about-hero-image img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      opacity: 0.9; display: block;
+      transition: transform 0.6s ease;
+    }
+    .about-hero-image:hover img {
+      transform: scale(1.02);
+    }
+    .about-hero-image-text {
+      position: absolute; bottom: var(--space-8); left: var(--space-8);
+      right: var(--space-8);
+      z-index: 2;
+    }
+    .about-hero-image-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
+      z-index: 1;
+    }
+    .about-hero-image-label {
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.6); margin-bottom: var(--space-2);
+      font-family: var(--font-mono);
+    }
+    .about-hero-image-quote {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(22px, 2.8vw, 32px);
+      font-style: italic; color: var(--white); line-height: 1.25;
+    }
+
+    /* Right: content half */
+    .about-hero-content {
+      padding: var(--space-16) var(--space-10);
+      display: flex; flex-direction: column;
+      justify-content: center; gap: var(--space-6);
+    }
+    @media (max-width: 767px) { .about-hero-content { padding: var(--space-10) var(--space-6); } }
+
+    .page-eyebrow { display: flex; align-items: center; gap: var(--space-3); }
+    .page-eyebrow-line { width: 28px; height: 1.5px; background: var(--muted); }
+    .page-eyebrow-text { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted); }
+
+    .about-hero-title {
+      font-size: clamp(40px, 5.5vw, 72px);
+      font-weight: 800; line-height: 0.92;
+      letter-spacing: -0.035em; color: var(--black);
+    }
+    .about-hero-title .accent { color: var(--accent); }
+    .about-hero-body {
+      font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 440px;
+    }
+    .about-hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);
+      padding-top: var(--space-6); border-top: 1px solid var(--border);
+    }
+    .about-stat-num { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: var(--black); }
+    .about-stat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; margin-top: 3px; }
+
+    /* ── Philosophy & Story ── */
+    .about-story {
+      border-bottom: 1.5px solid var(--black);
+      background: var(--bg);
+    }
+    .about-story-header {
+      padding: var(--space-10);
+      border-bottom: 1.5px solid var(--black);
+      display: flex; flex-direction: column; gap: var(--space-2);
+    }
+    .about-story-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) { .about-story-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .story-card {
+      padding: var(--space-10) var(--space-8);
+      border-right: 1.5px solid var(--black);
+      border-bottom: 1.5px solid var(--black);
+      display: flex; flex-direction: column; gap: var(--space-4);
+      background: var(--bg-card);
+      transition: background var(--duration-fast);
+    }
+    @media (min-width: 768px) {
+      .story-card { border-bottom: none; }
+      .story-card:last-child { border-right: none; }
+    }
+    @media (max-width: 767px) {
+      .story-card:last-child { border-bottom: none; }
+    }
+    .story-card:hover { background: var(--bg-surface); }
+    .story-card-num {
+      font-size: 11px; font-weight: 700; color: var(--accent);
+      font-family: var(--font-mono); letter-spacing: 0.12em;
+    }
+    .story-card-title {
+      font-size: 20px; font-weight: 800; letter-spacing: -0.02em; color: var(--black);
+    }
+    .story-card-desc {
+      font-size: 14px; color: var(--muted); line-height: 1.65;
+    }
+
+    /* ── Audience Tracks ── */
+    .about-audiences {
+      border-bottom: 1.5px solid var(--black);
+      background: var(--bg-surface);
+    }
+    .about-audiences-header {
+      padding: var(--space-10);
+      border-bottom: 1.5px solid var(--black);
+    }
+    .about-audiences-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 600px) { .about-audiences-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .about-audiences-grid { grid-template-columns: repeat(5, 1fr); } }
+
+    .audience-pillar-card {
+      padding: var(--space-8) var(--space-6);
+      border-right: 1.5px solid var(--black);
+      border-bottom: 1.5px solid var(--black);
+      background: var(--bg-card);
+      transition: background var(--duration-fast);
+      display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-4);
+    }
+    @media (min-width: 960px) {
+      .audience-pillar-card { border-bottom: none; }
+      .audience-pillar-card:last-child { border-right: none; }
+    }
+    .audience-pillar-card:hover { background: var(--bg); }
+    .audience-pillar-icon { font-size: 28px; }
+    .audience-pillar-tag {
+      font-size: 10px; font-weight: 700; font-family: var(--font-mono);
+      text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted);
+    }
+    .audience-pillar-title { font-size: 18px; font-weight: 800; color: var(--black); }
+    .audience-pillar-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    /* ── Mission section ── */
+    .about-mission {
+      border-bottom: 1.5px solid var(--black);
+    }
+    .about-mission-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) { .about-mission-grid { grid-template-columns: 280px 1fr; } }
+
+    .about-mission-label {
+      padding: var(--space-10);
+      border-right: 1.5px solid var(--black);
+      border-bottom: 1.5px solid var(--black);
+    }
+    @media (max-width: 767px) { .about-mission-label { border-right: none; } }
+    .about-section-overline {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.18em; color: var(--muted); font-family: var(--font-mono);
+    }
+    .about-mission-content {
+      padding: var(--space-10);
+      display: flex; flex-direction: column; gap: var(--space-6);
+    }
+    .about-mission-headline {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 800; letter-spacing: -0.03em;
+      line-height: 1.0; color: var(--black);
+    }
+    .about-mission-body {
+      font-size: 15px; color: var(--muted); line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ── Values / principles ── */
+    .about-values {
+      border-bottom: 1.5px solid var(--black);
+    }
+    .about-values-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 540px) { .about-values-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .about-values-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .about-value-card {
+      padding: var(--space-8) var(--space-7);
+      border-right: 1.5px solid var(--black);
+      border-bottom: 1.5px solid var(--black);
+      transition: background var(--duration-fast);
+      cursor: default;
+    }
+    @media (min-width: 900px) { .about-value-card:nth-child(4n) { border-right: none; } }
+    @media (min-width: 540px) and (max-width: 899px) { .about-value-card:nth-child(2n) { border-right: none; } }
+    @media (max-width: 539px) { .about-value-card { border-right: none; } }
+    .about-value-card:hover { background: var(--bg-surface); }
+
+    .about-value-num {
+      font-size: 10px; font-weight: 700; color: var(--muted);
+      font-family: var(--font-mono); letter-spacing: 0.1em;
+      margin-bottom: var(--space-4);
+    }
+
+    .about-value-icon { font-size: 28px; margin-bottom: var(--space-4); }
+    .about-value-title { font-size: 17px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: var(--space-3); color: var(--black); }
+    .about-value-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+    /* ── Creator ── */
+    .about-creator {
+      border-bottom: 1.5px solid var(--black);
+    }
+    .about-creator-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) { .about-creator-grid { grid-template-columns: 1fr 1fr; } }
+
+    .about-creator-content {
+      padding: var(--space-12) var(--space-10);
+      display: flex; flex-direction: column; gap: var(--space-6);
+      justify-content: center;
+      border-right: 1.5px solid var(--black);
+    }
+    @media (max-width: 767px) { .about-creator-content { border-right: none; border-bottom: 1.5px solid var(--black); } }
+
+    .about-creator-name {
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 800; letter-spacing: -0.03em;
+      line-height: 0.95; color: var(--black);
+    }
+    .about-creator-role {
+      font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--muted); font-family: var(--font-mono);
+    }
+    .about-creator-bio {
+      font-size: 15px; color: var(--muted);
+      line-height: 1.7; max-width: 420px;
+    }
+    .about-creator-links {
+      display: flex; gap: var(--space-3); flex-wrap: wrap;
+    }
+    .about-creator-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 16px;
+      border: 1.5px solid var(--black);
+      font-size: 12px; font-weight: 700;
+      transition: all var(--duration-fast);
+      color: var(--black); background: var(--white);
+    }
+    .about-creator-link:hover { background: var(--bg-surface); }
+
+    .about-creator-photo {
+      min-height: 440px;
+      position: relative; overflow: hidden;
+      background: var(--black);
+    }
+    .about-creator-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      display: block; opacity: 0.9;
+      transition: transform 0.6s ease;
+    }
+    .about-creator-photo:hover img {
+      transform: scale(1.02);
+    }
+    .about-creator-photo-badge {
+      position: absolute; top: var(--space-5); right: var(--space-5);
+      border: 1.5px solid var(--black);
+      background: var(--white); padding: var(--space-3) var(--space-4);
+      z-index: 2;
+    }
+    .about-creator-photo-badge-name { font-size: 14px; font-weight: 800; color: var(--black); }
+    .about-creator-photo-badge-sub { font-size: 10px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* ── Contact ── */
+    .about-contact {
+      display: grid; grid-template-columns: 1fr;
+      border-bottom: 1.5px solid var(--black);
+    }
+    @media (min-width: 768px) { .about-contact { grid-template-columns: 1fr 1fr; } }
+
+    .about-contact-left {
+      background: var(--black); color: var(--white);
+      padding: var(--space-12) var(--space-10);
+      display: flex; flex-direction: column; gap: var(--space-6);
+      justify-content: center;
+      border-right: 1.5px solid var(--black);
+    }
+    @media (max-width: 767px) { .about-contact-left { border-right: none; border-bottom: 1.5px solid rgba(255,255,255,0.15); } }
+
+    .about-contact-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800; letter-spacing: -0.025em; line-height: 1.05;
+    }
+    .about-contact-title .accent { color: var(--accent); }
+    .about-contact-sub { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.65; max-width: 360px; }
+
+    .about-contact-items { display: flex; flex-direction: column; gap: var(--space-4); }
+    .about-contact-item {
+      display: flex; align-items: center; gap: var(--space-4);
+      padding: var(--space-4); border: 1px solid rgba(255,255,255,0.12);
+      transition: border-color var(--duration-fast), background var(--duration-fast);
+    }
+    .about-contact-item:hover { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.05); }
+    .about-contact-item-icon { font-size: 20px; flex-shrink: 0; }
+    .about-contact-item-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); font-family: var(--font-mono); }
+    .about-contact-item-val { font-size: 14px; font-weight: 700; color: var(--white); }
+
+    .about-contact-right {
+      padding: var(--space-12) var(--space-10);
+      display: flex; flex-direction: column; gap: var(--space-5); justify-content: center;
+      background: var(--bg-card);
+    }
+
+    .contact-form-label {
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--muted); display: block; margin-bottom: 6px;
+      font-family: var(--font-mono);
+    }
+    .contact-form-input {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      font-size: 14px; background: var(--white);
+      color: var(--black); outline: none;
+      transition: border-color var(--duration-fast);
+      font-family: inherit;
+    }
+    .contact-form-input:focus { border-color: var(--black); }
+    .contact-form-input::placeholder { color: var(--muted-light); }
+    textarea.contact-form-input { min-height: 100px; resize: vertical; }
+    .contact-form-btn { width: 100%; }
+
+    .breadcrumb { display: flex; align-items: center; gap: var(--space-2); font-size: 12px; color: var(--muted); margin-bottom: var(--space-6); }
+    .breadcrumb a { color: var(--muted); transition: color var(--duration-fast); }
+    .breadcrumb a:hover { color: var(--black); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo" aria-label="AERA by Sai — home">
+          <span class="nav-logo-main">AERA</span><span class="nav-logo-sub">by Sai</span>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html#this-week" class="nav-link">Discover</a></li>
+          <li><a href="weeks.html" class="nav-link">Weeks</a></li>
+          <li><a href="toolbox.html" class="nav-link">Toolbox</a></li>
+          <li><a href="lab.html" class="nav-link">Lab</a></li>
+          <li><a href="about.html" class="nav-link" style="color:var(--black);font-weight:700;">About</a></li>
+        </ul>
+        <div class="nav-right">
+          <button class="nav-search-btn" aria-label="Search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
+          </button>
+          <a href="#about-contact" class="btn btn-primary" style="font-size:13px;padding:9px 18px;">Get in Touch →</a>
+          <button id="nav-hamburger" class="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav id="mobile-drawer" aria-label="Mobile navigation">
+    <a href="index.html#this-week" class="drawer-link">Discover</a>
+    <a href="weeks.html" class="drawer-link">Weeks</a>
+    <a href="toolbox.html" class="drawer-link">Toolbox</a>
+    <a href="lab.html" class="drawer-link">Lab</a>
+    <a href="about.html" class="drawer-link">About</a>
+    <div class="divider" style="margin:8px 0"></div>
+    <a href="#about-contact" class="btn btn-primary" style="width:fit-content;margin-top:8px;">Get in Touch →</a>
+  </nav>
+
+  <!-- HERO — split with portrait -->
+  <section class="about-hero" aria-labelledby="about-hero-title" style="padding-top:var(--nav-h);">
+    <div class="container" style="padding:0;max-width:100%;">
+      <div class="about-hero-grid">
+
+        <!-- Left: portrait -->
+        <div class="about-hero-image reveal">
+          <img src="assets/sai.png" alt="Sai — AERA founder" />
+          <div class="about-hero-image-overlay"></div>
+          <div class="about-hero-image-text">
+            <div class="about-hero-image-label">AERA PLATFORM · EST. 2026</div>
+            <div class="about-hero-image-quote">
+              "Curating the AI tools that actually accelerate your work."
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: intro text -->
+        <div class="about-hero-content reveal" style="transition-delay:120ms;">
+          <div class="page-eyebrow">
+            <div class="page-eyebrow-line"></div>
+            <span class="page-eyebrow-text">About the platform</span>
+          </div>
+
+          <h1 id="about-hero-title" class="about-hero-title">
+            Built for<br>the <span class="accent">Gen Z</span><br>that moves fast.
+          </h1>
+
+          <p class="about-hero-body">
+            AERA is a weekly AI curation platform built by Sai — for students, freshers, creators, developers and founders who want to stay ahead without the noise. Every week, a hand-tested drop of AI tools tailored to your workflow.
+          </p>
+
+          <div class="about-hero-stats">
+            <div><div class="about-stat-num">50K+</div><div class="about-stat-label">Active Learners</div></div>
+            <div><div class="about-stat-num">40+</div><div class="about-stat-label">Curated Tools</div></div>
+            <div><div class="about-stat-num">5</div><div class="about-stat-label">Audience Tracks</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-inner">
+      <span class="ticker-item">AERA BY SAI <span class="ticker-dot"></span></span>
+      <span class="ticker-item">FOR STUDENTS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">FOR CREATORS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">FOR DEVELOPERS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">FOR FOUNDERS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">AERA BY SAI <span class="ticker-dot"></span></span>
+      <span class="ticker-item">FOR STUDENTS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">FOR CREATORS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">FOR DEVELOPERS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">FOR FOUNDERS <span class="ticker-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- STORY & PHILOSOPHY (Replaces Timeline) -->
+  <section class="about-story" aria-labelledby="story-heading">
+    <div class="about-story-header container reveal" style="padding:var(--space-8) var(--space-10);">
+      <div class="about-section-overline">Platform Vision</div>
+      <h2 id="story-heading" style="font-size:clamp(24px, 3.5vw, 38px);font-weight:800;letter-spacing:-0.02em;color:var(--black);">
+        Why AERA exists.
+      </h2>
+    </div>
+    <div class="container" style="padding:0;max-width:100%;">
+      <div class="about-story-grid">
+
+        <div class="story-card reveal">
+          <div class="story-card-num">01 / THE PROBLEM</div>
+          <h3 class="story-card-title">Too Much Noise</h3>
+          <p class="story-card-desc">
+            AI news moves at lightspeed, but most content is either overly technical developer docs or superficial affiliate clickbait. Finding tools that actually save hours is frustrating.
+          </p>
+        </div>
+
+        <div class="story-card reveal" style="transition-delay:80ms">
+          <div class="story-card-num">02 / THE SOLUTION</div>
+          <h3 class="story-card-title">Targeted Curation</h3>
+          <p class="story-card-desc">
+            We filter thousands of tools into weekly, highly actionable drops organized specifically by who you are — student, fresher, creator, developer, or founder.
+          </p>
+        </div>
+
+        <div class="story-card reveal" style="transition-delay:160ms">
+          <div class="story-card-num">03 / THE STANDARD</div>
+          <h3 class="story-card-title">100% Unbiased</h3>
+          <p class="story-card-desc">
+            Every single tool featured in AERA is hands-on tested. Zero sponsored placements, zero affiliate bloat. Only real value that makes an immediate impact.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE PILLARS -->
+  <section class="about-audiences" aria-labelledby="audiences-heading">
+    <div class="about-audiences-header container reveal" style="padding:var(--space-8) var(--space-10);">
+      <div class="about-section-overline">Who We Serve</div>
+      <h2 id="audiences-heading" style="font-size:clamp(22px, 3vw, 32px);font-weight:800;letter-spacing:-0.02em;color:var(--black);">
+        Five distinct audience tracks.
+      </h2>
+    </div>
+    <div class="container" style="padding:0;max-width:100%;">
+      <div class="about-audiences-grid">
+
+        <div class="audience-pillar-card reveal">
+          <div>
+            <div class="audience-pillar-icon">🎓</div>
+            <div class="audience-pillar-tag" style="margin-top:var(--space-3);">TRACK 01</div>
+            <div class="audience-pillar-title" style="margin-top:var(--space-2);">Students</div>
+          </div>
+          <p class="audience-pillar-desc">Research assistants, exam preppers, literature summarizers & study accelerators.</p>
+        </div>
+
+        <div class="audience-pillar-card reveal" style="transition-delay:60ms;">
+          <div>
+            <div class="audience-pillar-icon">💼</div>
+            <div class="audience-pillar-tag" style="margin-top:var(--space-3);">TRACK 02</div>
+            <div class="audience-pillar-title" style="margin-top:var(--space-2);">Freshers</div>
+          </div>
+          <p class="audience-pillar-desc">Resume polishers, interview simulators, cold email generators & career boosters.</p>
+        </div>
+
+        <div class="audience-pillar-card reveal" style="transition-delay:120ms;">
+          <div>
+            <div class="audience-pillar-icon">🎨</div>
+            <div class="audience-pillar-tag" style="margin-top:var(--space-3);">TRACK 03</div>
+            <div class="audience-pillar-title" style="margin-top:var(--space-2);">Creators</div>
+          </div>
+          <p class="audience-pillar-desc">Scriptwriters, thumbnail generators, video editors & visual storytelling tools.</p>
+        </div>
+
+        <div class="audience-pillar-card reveal" style="transition-delay:180ms;">
+          <div>
+            <div class="audience-pillar-icon">💻</div>
+            <div class="audience-pillar-tag" style="margin-top:var(--space-3);">TRACK 04</div>
+            <div class="audience-pillar-title" style="margin-top:var(--space-2);">Developers</div>
+          </div>
+          <p class="audience-pillar-desc">AI code assistants, API generators, terminal tools & automated testing utilities.</p>
+        </div>
+
+        <div class="audience-pillar-card reveal" style="transition-delay:240ms;">
+          <div>
+            <div class="audience-pillar-icon">🚀</div>
+            <div class="audience-pillar-tag" style="margin-top:var(--space-3);">TRACK 05</div>
+            <div class="audience-pillar-title" style="margin-top:var(--space-2);">Founders</div>
+          </div>
+          <p class="audience-pillar-desc">No-code MVP builders, pitch deck designers, market analysis & automation agents.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="about-mission" aria-labelledby="mission-heading">
+    <div class="container" style="padding:0;max-width:100%;">
+      <div class="about-mission-grid">
+        <div class="about-mission-label reveal">
+          <div class="about-section-overline" style="margin-bottom:var(--space-4);">Our Mission</div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.65;">Democratizing AI productivity for everyone.</p>
+        </div>
+        <div class="about-mission-content reveal" style="transition-delay:100ms;">
+          <h2 id="mission-heading" class="about-mission-headline">
+            Closing the gap<br>between people<br>& AI.
+          </h2>
+          <p class="about-mission-body">
+            Most AI content is made for tech insiders. AERA is built for everyone else — the student preparing for exams, the fresher job hunting, the creator grinding for growth, the developer shipping features, the founder building something new.
+          </p>
+          <p class="about-mission-body">
+            We believe AI tools should be accessible, understandable, and actionable. Not theoretical. Not hype. Not pay-walled. Just curated, tested, and explained clearly — every single week.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="about-values" aria-labelledby="values-heading">
+    <div class="container" style="padding:var(--space-10);padding-bottom:0;">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:var(--space-6);border-bottom:1px solid var(--border);">
+        <h2 id="values-heading" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;color:var(--muted);font-family:var(--font-mono);">Our Operating Principles</h2>
+      </div>
+    </div>
+    <div class="container" style="padding:0;max-width:100%;">
+      <div class="about-values-grid">
+
+        <div class="about-value-card reveal">
+          <div class="about-value-num">01</div>
+          <div class="about-value-icon">🎯</div>
+          <div class="about-value-title">Audience-First Curation</div>
+          <div class="about-value-desc">Every tool is picked for a specific person. Not a generic list — tailored drops for each audience every week.</div>
+        </div>
+
+        <div class="about-value-card reveal" style="transition-delay:70ms">
+          <div class="about-value-num">02</div>
+          <div class="about-value-icon">🔬</div>
+          <div class="about-value-title">Hands-On Testing</div>
+          <div class="about-value-desc">Every tool in the AERA toolbox has been used and evaluated by Sai before it appears on this platform.</div>
+        </div>
+
+        <div class="about-value-card reveal" style="transition-delay:140ms">
+          <div class="about-value-num">03</div>
+          <div class="about-value-icon">🚫</div>
+          <div class="about-value-title">Zero Sponsored Fluff</div>
+          <div class="about-value-desc">No paid picks. No affiliate spam. If it's here, it's because it genuinely works — full stop.</div>
+        </div>
+
+        <div class="about-value-card reveal" style="transition-delay:210ms">
+          <div class="about-value-num">04</div>
+          <div class="about-value-icon">⚡</div>
+          <div class="about-value-title">Built for Speed</div>
+          <div class="about-value-desc">Every write-up is concise and actionable. No 20-minute reads — just what you need to get started today.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CREATOR -->
+  <section class="about-creator" aria-labelledby="creator-heading">
+    <div class="container" style="padding:0;max-width:100%;">
+      <div class="about-creator-grid">
+
+        <div class="about-creator-content reveal">
+          <div class="about-section-overline">The Person Behind It</div>
+          <h2 id="creator-heading" class="about-creator-name">Sai.</h2>
+          <div class="about-creator-role">Founder · Curator · Builder</div>
+          <p class="about-creator-bio">
+            A Gen Z creator obsessed with AI and the future of learning. Sai started AERA because he was tired of AI content made for engineers — and wanted to build something for everyone else.
+          </p>
+          <p class="about-creator-bio">
+            When not curating tools, Sai is experimenting in the AERA Lab, building on YouTube, or testing the latest generative AI workflows.
+          </p>
+          <div class="about-creator-links">
+            <a href="#" class="about-creator-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+              Instagram
+            </a>
+            <a href="#" class="about-creator-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20.06 12 20.06 12 20.06s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02" fill="currentColor" stroke="none"/></svg>
+              YouTube
+            </a>
+            <a href="mailto:hello@aerabysai.com" class="about-creator-link">
+              ✉ Email Sai
+            </a>
+          </div>
+        </div>
+
+        <div class="about-creator-photo reveal" style="transition-delay:100ms;">
+          <img src="assets/sai.png" alt="Sai — founder of AERA" />
+          <div class="about-creator-photo-badge">
+            <div class="about-creator-photo-badge-name">AERA</div>
+            <div class="about-creator-photo-badge-sub">by Sai · Est. 2026</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="about-contact" id="about-contact" aria-labelledby="contact-heading">
+    <div class="about-contact-left reveal">
+      <div class="about-section-overline" style="color:rgba(255,255,255,0.4);">Get In Touch</div>
+      <h2 id="contact-heading" class="about-contact-title">Let's talk.<br><span class="accent">Say hello.</span></h2>
+      <p class="about-contact-sub">Got a tool suggestion, collaboration idea, or feedback? Drop a message below — I'm always excited to connect.</p>
+      <div class="about-contact-items">
+        <div class="about-contact-item">
+          <span class="about-contact-item-icon">✉</span>
+          <div>
+            <div class="about-contact-item-label">Email</div>
+            <div class="about-contact-item-val">hello@aerabysai.com</div>
+          </div>
+        </div>
+        <div class="about-contact-item">
+          <span class="about-contact-item-icon">📸</span>
+          <div>
+            <div class="about-contact-item-label">Instagram</div>
+            <div class="about-contact-item-val">@aerabysai</div>
+          </div>
+        </div>
+        <div class="about-contact-item">
+          <span class="about-contact-item-icon">▶</span>
+          <div>
+            <div class="about-contact-item-label">YouTube</div>
+            <div class="about-contact-item-val">AERA by Sai</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-contact-right reveal" style="transition-delay:100ms;">
+      <div class="about-section-overline" style="margin-bottom:var(--space-6);">Send a message</div>
+      <form onsubmit="return handleContactForm(event);" aria-label="Contact form">
+        <div style="margin-bottom:var(--space-4);">
+          <label class="contact-form-label" for="contact-name">Your name</label>
+          <input class="contact-form-input" id="contact-name" type="text" placeholder="John Doe" autocomplete="name" required />
+        </div>
+        <div style="margin-bottom:var(--space-4);">
+          <label class="contact-form-label" for="contact-email">Email</label>
+          <input class="contact-form-input" id="contact-email" type="email" placeholder="you@example.com" autocomplete="email" required />
+        </div>
+        <div style="margin-bottom:var(--space-5);">
+          <label class="contact-form-label" for="contact-message">Message</label>
+          <textarea class="contact-form-input" id="contact-message" placeholder="Hi Sai, I wanted to suggest..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary contact-form-btn" id="contact-submit">
+          Send Message →
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1.5px solid var(--black);padding:var(--space-8) 0;" role="contentinfo">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);">
+        <a href="index.html" class="nav-logo">
+          <span class="nav-logo-main">AERA</span><span class="nav-logo-sub">by Sai</span>
+        </a>
+        <nav style="display:flex;gap:var(--space-6);flex-wrap:wrap;">
+          <a href="index.html" style="font-size:12px;color:var(--muted);">Home</a>
+          <a href="weeks.html" style="font-size:12px;color:var(--muted);">Weeks</a>
+          <a href="toolbox.html" style="font-size:12px;color:var(--muted);">Toolbox</a>
+          <a href="lab.html" style="font-size:12px;color:var(--muted);">Lab</a>
+          <a href="about.html" style="font-size:12px;color:var(--black);font-weight:700;">About</a>
+        </nav>
+        <p style="font-size:12px;color:var(--muted-light);">© 2026 AERA by Sai. Built with curiosity & caffeine.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+    const hamburger = document.getElementById('nav-hamburger');
+    const drawer = document.getElementById('mobile-drawer');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      drawer.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('open'); drawer.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }));
+    const reveals = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); ro.unobserve(e.target); } }), { threshold: 0.08 });
+    reveals.forEach(el => ro.observe(el));
+
+    function handleContactForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('contact-submit');
+      btn.textContent = '✓ Message sent!';
+      btn.style.background = '#16a34a';
+      setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; }, 3000);
+      return false;
+    }
+  </script>
+</body>
+</html>

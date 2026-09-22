@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AERA Toolbox — Every AI tool ever featured, searchable and filterable by audience. Students, Freshers, Creators, Developers, Founders." />
+  <meta name="keywords" content="AI tools directory, best AI tools 2026, AERA toolbox, student AI tools" />
+  <meta property="og:title" content="AERA Toolbox — Every AI Tool, Curated" />
+  <meta property="og:type" content="website" />
+  <title>Toolbox — AERA by Sai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/typography.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <style>
+    /* ══ TOOLBOX PAGE ══ */
+    .page-hero {
+      padding-top: calc(var(--nav-h) + var(--space-12));
+      padding-bottom: var(--space-10);
+      border-bottom: 1.5px solid var(--black);
+    }
+    .page-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      align-items: end;
+    }
+    @media (min-width: 768px) { .page-hero-grid { grid-template-columns: 1fr auto; } }
+
+    .page-eyebrow {
+      display: flex; align-items: center; gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+    .page-eyebrow-line { width: 28px; height: 1.5px; background: var(--muted); }
+    .page-eyebrow-text {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.16em; color: var(--muted);
+    }
+    .page-title {
+      font-size: clamp(52px, 7vw, 96px);
+      font-weight: 800; line-height: 0.92;
+      letter-spacing: -0.035em; color: var(--black);
+    }
+    .page-title .accent { color: var(--accent); }
+    .page-desc {
+      font-size: 15px; color: var(--muted);
+      line-height: 1.65; max-width: 420px;
+      margin-top: var(--space-5);
+    }
+    .page-stats {
+      display: flex; gap: var(--space-8);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--border);
+      margin-top: var(--space-8);
+    }
+    .page-stat-num {
+      font-size: 26px; font-weight: 800;
+      letter-spacing: -0.02em; line-height: 1;
+    }
+    .page-stat-label {
+      font-size: 10px; color: var(--muted); margin-top: 4px;
+      text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700;
+    }
+
+    /* ── Controls ── */
+    .toolbox-controls {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      padding: var(--space-6) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    @media (min-width: 640px) {
+      .toolbox-controls { flex-direction: row; align-items: center; justify-content: space-between; }
+    }
+
+    .filter-row {
+      display: flex; gap: var(--space-2);
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .filter-row::-webkit-scrollbar { display: none; }
+
+    .filter-chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 7px 14px;
+      font-size: 12px; font-weight: 700;
+      border: 1.5px solid var(--border);
+      color: var(--muted); white-space: nowrap;
+      background: transparent; cursor: pointer;
+      transition: all var(--duration-fast);
+    }
+    .filter-chip:hover { border-color: var(--black); color: var(--black); }
+    .filter-chip.active { background: var(--black); color: var(--white); border-color: var(--black); }
+
+    .toolbox-search {
+      position: relative; flex-shrink: 0;
+    }
+    .toolbox-search svg {
+      position: absolute; left: 12px; top: 50%;
+      transform: translateY(-50%); color: var(--muted); pointer-events: none;
+    }
+    .toolbox-search input {
+      padding: 10px 16px 10px 38px;
+      border: 1.5px solid var(--border);
+      font-size: 13px; background: var(--white);
+      color: var(--black); outline: none;
+      transition: border-color var(--duration-fast);
+      min-width: 220px;
+    }
+    .toolbox-search input:focus { border-color: var(--black); }
+    .toolbox-search input::placeholder { color: var(--muted-light); }
+
+    /* ── Results count ── */
+    .results-count {
+      font-size: 12px; font-weight: 700; color: var(--muted);
+      font-family: var(--font-mono);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Tools grid ── */
+    .tools-outer {
+      padding: var(--space-8) 0 var(--space-20);
+    }
+    .toolbox-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      border: 1.5px solid var(--black);
+    }
+    @media (min-width: 540px)  { .toolbox-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px)  { .toolbox-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1100px) { .toolbox-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    /* ── Tool card ── */
+    .tb-card {
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-6);
+      border-right: 1.5px solid var(--black);
+      border-bottom: 1.5px solid var(--black);
+      background: var(--white);
+      cursor: pointer;
+      transition: background var(--duration-fast), color var(--duration-fast);
+      text-decoration: none;
+    }
+    @media (min-width: 1100px) { .tb-card:nth-child(4n) { border-right: none; } }
+    @media (min-width: 900px) and (max-width: 1099px) { .tb-card:nth-child(3n) { border-right: none; } }
+    @media (min-width: 540px) and (max-width: 899px)  { .tb-card:nth-child(2n) { border-right: none; } }
+    @media (max-width: 539px) { .tb-card { border-right: none; } }
+
+    .tb-card:hover { background: var(--black); color: var(--white); }
+    .tb-card:hover .tb-card-desc,
+    .tb-card:hover .tb-card-week { color: rgba(255,255,255,0.5); }
+    .tb-card:hover .tb-tag { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); }
+    .tb-card:hover .tb-card-link { border-color: rgba(255,255,255,0.3); color: var(--white); }
+
+    .tb-card-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+    .tb-card-icon {
+      font-size: 28px; line-height: 1;
+      flex-shrink: 0;
+    }
+    .tb-card-week {
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--muted); font-family: var(--font-mono);
+    }
+    .tb-card-name {
+      font-size: 17px; font-weight: 800;
+      letter-spacing: -0.02em; line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .tb-card-desc {
+      font-size: 12px; color: var(--muted);
+      line-height: 1.55; flex: 1;
+    }
+    .tb-tags {
+      display: flex; flex-wrap: wrap; gap: 5px;
+      margin-top: var(--space-4);
+    }
+    .tb-tag {
+      font-size: 10px; font-weight: 700;
+      color: var(--black-50); letter-spacing: 0.06em;
+      border: 1px solid var(--border);
+      padding: 2px 8px; text-transform: uppercase;
+    }
+    .tb-card-footer {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border);
+    }
+    .tb-card:hover .tb-card-footer { border-color: rgba(255,255,255,0.12); }
+
+    .tb-card-audience {
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .tb-card-link {
+      width: 28px; height: 28px;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; color: var(--muted);
+      transition: all var(--duration-fast);
+    }
+    .tb-card:hover .tb-card-link { background: var(--white); color: var(--black); }
+
+    /* Rating stars */
+    .tb-rating { display: flex; gap: 2px; }
+    .tb-star { font-size: 10px; color: #fbbf24; }
+    .tb-star.empty { color: var(--border); }
+
+    /* hidden */
+    .tb-card[data-hidden] { display: none; }
+
+    /* No results */
+    .no-results {
+      grid-column: 1 / -1;
+      padding: var(--space-20);
+      text-align: center;
+      display: none;
+    }
+    .no-results.show { display: block; }
+    .no-results-title { font-size: 24px; font-weight: 800; }
+    .no-results-sub { font-size: 14px; color: var(--muted); margin-top: var(--space-2); }
+
+    /* breadcrumb */
+    .breadcrumb { display: flex; align-items: center; gap: var(--space-2); font-size: 12px; color: var(--muted); margin-bottom: var(--space-6); }
+    .breadcrumb a { color: var(--muted); transition: color var(--duration-fast); }
+    .breadcrumb a:hover { color: var(--black); }
+    .breadcrumb-sep { color: var(--muted-light); }
+
+    /* audience accent */
+    .aud-students   { color: #2563eb; }
+    .aud-freshers   { color: #7c3aed; }
+    .aud-creators   { color: #db2777; }
+    .aud-developers { color: #0891b2; }
+    .aud-founders   { color: #d97706; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo" aria-label="AERA by Sai — home">
+          <span class="nav-logo-main">AERA</span>
+          <span class="nav-logo-sub">by Sai</span>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html#this-week" class="nav-link">Discover</a></li>
+          <li><a href="weeks.html" class="nav-link">Weeks</a></li>
+          <li><a href="toolbox.html" class="nav-link" style="color:var(--black);font-weight:700;">Toolbox</a></li>
+          <li><a href="lab.html" class="nav-link">Lab</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+        <div class="nav-right">
+          <button class="nav-search-btn" aria-label="Search" id="focus-search-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
+          </button>
+          <a href="index.html#footer-section" class="btn btn-primary" style="font-size:13px;padding:9px 18px;">Join the Era →</a>
+          <button id="nav-hamburger" class="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <nav id="mobile-drawer" aria-label="Mobile navigation">
+    <a href="index.html#this-week" class="drawer-link">Discover</a>
+    <a href="weeks.html" class="drawer-link">Weeks</a>
+    <a href="toolbox.html" class="drawer-link">Toolbox</a>
+    <a href="lab.html" class="drawer-link">Lab</a>
+    <a href="about.html" class="drawer-link">About</a>
+    <div class="divider" style="margin:8px 0"></div>
+    <a href="index.html#footer-section" class="btn btn-primary" style="width:fit-content;margin-top:8px;">Join the Era →</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Toolbox</span>
+      </nav>
+      <div class="page-hero-grid">
+        <div class="reveal">
+          <div class="page-eyebrow">
+            <div class="page-eyebrow-line"></div>
+            <span class="page-eyebrow-text">Every Tool. Curated.</span>
+          </div>
+          <h1 class="page-title">The<br><span class="accent">Toolbox.</span></h1>
+          <p class="page-desc">Every AI tool AERA has ever featured — searchable, filterable, and ready to use. No fluff, no affiliate spam. Just tools that actually work.</p>
+          <div class="page-stats">
+            <div><div class="page-stat-num">40+</div><div class="page-stat-label">Tools</div></div>
+            <div><div class="page-stat-num">5</div><div class="page-stat-label">Audiences</div></div>
+            <div><div class="page-stat-num">5</div><div class="page-stat-label">Categories</div></div>
+          </div>
+        </div>
+        <div class="reveal" style="transition-delay:150ms;">
+          <!-- Mini index card -->
+          <div style="border:1.5px solid var(--black);padding:var(--space-6);min-width:220px;background:var(--white);">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--muted);margin-bottom:var(--space-4);">By Audience</div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);">
+                <span style="font-size:13px;font-weight:700;">🎓 Students</span><span style="font-size:11px;font-family:var(--font-mono);color:var(--muted);">06</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);">
+                <span style="font-size:13px;font-weight:700;">💼 Freshers</span><span style="font-size:11px;font-family:var(--font-mono);color:var(--muted);">03</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);">
+                <span style="font-size:13px;font-weight:700;">📸 Creators</span><span style="font-size:11px;font-family:var(--font-mono);color:var(--muted);">03</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);">
+                <span style="font-size:13px;font-weight:700;">&lt;/&gt; Developers</span><span style="font-size:11px;font-family:var(--font-mono);color:var(--muted);">03</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;">
+                <span style="font-size:13px;font-weight:700;">🚀 Founders</span><span style="font-size:11px;font-family:var(--font-mono);color:var(--muted);">03</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-inner">
+      <span class="ticker-item">PERPLEXITY AI <span class="ticker-dot"></span></span>
+      <span class="ticker-item">NOTEBOOKLM <span class="ticker-dot"></span></span>
+      <span class="ticker-item">CURSOR <span class="ticker-dot"></span></span>
+      <span class="ticker-item">RUNWAY GEN-3 <span class="ticker-dot"></span></span>
+      <span class="ticker-item">ELEVEN LABS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">CLAY <span class="ticker-dot"></span></span>
+      <span class="ticker-item">GAMMA <span class="ticker-dot"></span></span>
+      <span class="ticker-item">V0 BY VERCEL <span class="ticker-dot"></span></span>
+      <span class="ticker-item">PERPLEXITY AI <span class="ticker-dot"></span></span>
+      <span class="ticker-item">NOTEBOOKLM <span class="ticker-dot"></span></span>
+      <span class="ticker-item">CURSOR <span class="ticker-dot"></span></span>
+      <span class="ticker-item">RUNWAY GEN-3 <span class="ticker-dot"></span></span>
+      <span class="ticker-item">ELEVEN LABS <span class="ticker-dot"></span></span>
+      <span class="ticker-item">CLAY <span class="ticker-dot"></span></span>
+      <span class="ticker-item">GAMMA <span class="ticker-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="container">
+    <div class="toolbox-controls reveal">
+      <!-- Filter chips -->
+      <div class="filter-row" role="group" aria-label="Filter by audience">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="Students">🎓 Students</button>
+        <button class="filter-chip" data-filter="Freshers">💼 Freshers</button>
+        <button class="filter-chip" data-filter="Creators">📸 Creators</button>
+        <button class="filter-chip" data-filter="Developers">&lt;/&gt; Developers</button>
+        <button class="filter-chip" data-filter="Founders">🚀 Founders</button>
+      </div>
+      <!-- Search -->
+      <div class="toolbox-search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
+        <input id="tb-search" type="search" placeholder="Search tools..." aria-label="Search AI tools" autocomplete="off" />
+      </div>
+    </div>
+    <div class="results-count" id="results-count">Showing 18 tools</div>
+  </div>
+
+  <!-- GRID -->
+  <main class="tools-outer">
+    <div class="container">
+      <div class="toolbox-grid reveal-group" id="tb-grid">
+
+        <!-- ── STUDENTS ── -->
+        <a href="https://perplexity.ai" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Students" data-name="Perplexity AI" data-tags="research search study">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">🔍</span>
+            <span class="tb-card-week">W01</span>
+          </div>
+          <div class="tb-card-name">Perplexity AI</div>
+          <div class="tb-card-desc">AI-powered search that cites its sources. Perfect for literature reviews, fact-checking, and deep research.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Research</span><span class="tb-tag">Search</span><span class="tb-tag">Study</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-students">🎓 Students</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <a href="https://notebooklm.google.com" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Students" data-name="NotebookLM" data-tags="notes study google">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">📓</span>
+            <span class="tb-card-week">W01</span>
+          </div>
+          <div class="tb-card-name">NotebookLM</div>
+          <div class="tb-card-desc">Google's AI that talks to your own documents. Upload PDFs and have a conversation with your study material.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Notes</span><span class="tb-tag">Study</span><span class="tb-tag">Google</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-students">🎓 Students</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <a href="https://khanacademy.org/khanmigo" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Students" data-name="Khanmigo" data-tags="tutoring learning stem">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">🧑‍🏫</span>
+            <span class="tb-card-week">W01</span>
+          </div>
+          <div class="tb-card-name">Khanmigo</div>
+          <div class="tb-card-desc">Your AI tutor that never gives you the answer directly. Guides you with Socratic questioning so you actually learn.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Tutoring</span><span class="tb-tag">Learning</span><span class="tb-tag">STEM</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-students">🎓 Students</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <a href="https://notion.so/ai" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Students" data-name="Notion AI" data-tags="productivity writing notes">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">📝</span>
+            <span class="tb-card-week">W01</span>
+          </div>
+          <div class="tb-card-name">Notion AI</div>
+          <div class="tb-card-desc">Your second brain, now with an AI co-pilot. Draft essays, summarize readings, and create study schedules.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Productivity</span><span class="tb-tag">Writing</span><span class="tb-tag">Notes</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-students">🎓 Students</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <a href="https://quizlet.com" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Students" data-name="Quizlet AI" data-tags="flashcards memory exam prep">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">🃏</span>
+            <span class="tb-card-week">W01</span>
+          </div>
+          <div class="tb-card-name">Quizlet AI</div>
+          <div class="tb-card-desc">Turn any notes into flashcards in seconds. Paste your lecture notes and get a full flashcard deck instantly.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Flashcards</span><span class="tb-tag">Memory</span><span class="tb-tag">Exam Prep</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-students">🎓 Students</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <a href="https://mathway.com" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Students" data-name="Mathway AI" data-tags="math stem visual">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">🔢</span>
+            <span class="tb-card-week">W01</span>
+          </div>
+          <div class="tb-card-name">Mathway AI</div>
+          <div class="tb-card-desc">Snap a math problem, get a step-by-step solution. From algebra to calculus — instant, explained walkthroughs.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Math</span><span class="tb-tag">STEM</span><span class="tb-tag">Visual</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-students">🎓 Students</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <!-- ── FRESHERS ── -->
+        <a href="https://rezi.ai" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Freshers" data-name="Rezi AI" data-tags="resume job hunt career">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">📄</span>
+            <span class="tb-card-week">W02</span>
+          </div>
+          <div class="tb-card-name">Rezi AI</div>
+          <div class="tb-card-desc">The AI resume builder that beats ATS filters. Analyzes job descriptions and rewrites your resume to get shortlisted.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Resume</span><span class="tb-tag">Job Hunt</span><span class="tb-tag">Career</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-freshers">💼 Freshers</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <a href="https://grow.google/certificates/interview-warmup/" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Freshers" data-name="Interview Warmup" data-tags="interview careers google">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">🎤</span>
+            <span class="tb-card-week">W02</span>
+          </div>
+          <div class="tb-card-name">Interview Warmup</div>
+          <div class="tb-card-desc">Google's free AI mock interviewer. Practice real interview questions with instant feedback on your answers.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Interview</span><span class="tb-tag">Careers</span><span class="tb-tag">Google</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-freshers">💼 Freshers</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <a href="https://linkedin.com" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Freshers" data-name="LinkedIn AI" data-tags="linkedin networking career">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">💼</span>
+            <span class="tb-card-week">W02</span>
+          </div>
+          <div class="tb-card-name">LinkedIn AI</div>
+          <div class="tb-card-desc">AI-written job applications that match each role. Rewrites your headline, about section, and cover letters.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">LinkedIn</span><span class="tb-tag">Networking</span><span class="tb-tag">Career</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-freshers">💼 Freshers</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <!-- ── CREATORS ── -->
+        <a href="https://runwayml.com" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Creators" data-name="Runway Gen-3" data-tags="video generation visual">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">🎬</span>
+            <span class="tb-card-week">W03</span>
+          </div>
+          <div class="tb-card-name">Runway Gen-3</div>
+          <div class="tb-card-desc">Turn your text into cinematic video in seconds. The most advanced AI video generator for creators.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Video</span><span class="tb-tag">Generation</span><span class="tb-tag">Visual</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-creators">📸 Creators</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <a href="https://capcut.com" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Creators" data-name="CapCut AI" data-tags="video editing reels content">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">✂️</span>
+            <span class="tb-card-week">W03</span>
+          </div>
+          <div class="tb-card-name">CapCut AI</div>
+          <div class="tb-card-desc">Reels-ready edits in one tap. Auto-captions, beat sync, background removal, and viral templates.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Video Editing</span><span class="tb-tag">Reels</span><span class="tb-tag">Content</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-creators">📸 Creators</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <a href="https://elevenlabs.io" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Creators" data-name="ElevenLabs" data-tags="voice audio podcast">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">🎙️</span>
+            <span class="tb-card-week">W03</span>
+          </div>
+          <div class="tb-card-name">ElevenLabs</div>
+          <div class="tb-card-desc">Clone your voice or generate any voice imaginable. The most realistic AI voice generator for YouTube and podcasts.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Voice</span><span class="tb-tag">Audio</span><span class="tb-tag">Podcast</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-creators">📸 Creators</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <!-- ── DEVELOPERS ── -->
+        <a href="https://cursor.sh" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Developers" data-name="Cursor" data-tags="coding ide ai pair">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">⚡</span>
+            <span class="tb-card-week">W04</span>
+          </div>
+          <div class="tb-card-name">Cursor</div>
+          <div class="tb-card-desc">The AI-first code editor that replaces your IDE. Tab-complete entire functions, refactor with chat, debug contextually.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Coding</span><span class="tb-tag">IDE</span><span class="tb-tag">AI Pair</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-developers">&lt;/&gt; Developers</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <a href="https://v0.dev" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Developers" data-name="v0 by Vercel" data-tags="ui react frontend">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">🔷</span>
+            <span class="tb-card-week">W04</span>
+          </div>
+          <div class="tb-card-name">v0 by Vercel</div>
+          <div class="tb-card-desc">Prompt your UI into existence. Describe a UI, get production-ready React + Tailwind code instantly.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">UI</span><span class="tb-tag">React</span><span class="tb-tag">Frontend</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-developers">&lt;/&gt; Developers</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <a href="https://warp.dev" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Developers" data-name="Warp Terminal" data-tags="terminal cli devtools">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">🖥️</span>
+            <span class="tb-card-week">W04</span>
+          </div>
+          <div class="tb-card-name">Warp Terminal</div>
+          <div class="tb-card-desc">Your terminal with an AI command assistant. Type natural language, get shell commands. Never forget a git command again.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Terminal</span><span class="tb-tag">CLI</span><span class="tb-tag">DevTools</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-developers">&lt;/&gt; Developers</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <!-- ── FOUNDERS ── -->
+        <a href="https://clay.com" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Founders" data-name="Clay" data-tags="outreach sales gtm">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">🏺</span>
+            <span class="tb-card-week">W05</span>
+          </div>
+          <div class="tb-card-name">Clay</div>
+          <div class="tb-card-desc">AI-powered outreach that knows everything about your leads. Scrapes 50+ data sources for hyper-personalized cold emails.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Outreach</span><span class="tb-tag">Sales</span><span class="tb-tag">GTM</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-founders">🚀 Founders</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <a href="https://gamma.app" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Founders" data-name="Gamma" data-tags="pitch deck presentations startup">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">📊</span>
+            <span class="tb-card-week">W05</span>
+          </div>
+          <div class="tb-card-name">Gamma</div>
+          <div class="tb-card-desc">Your pitch deck, done in 30 seconds. Paste your idea and Gamma builds a beautiful investor-ready presentation.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Pitch Deck</span><span class="tb-tag">Presentations</span><span class="tb-tag">Startup</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-founders">🚀 Founders</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <a href="https://fireflies.ai" target="_blank" rel="noopener" class="tb-card reveal" data-audience="Founders" data-name="Fireflies AI" data-tags="meetings productivity notes">
+          <div class="tb-card-header">
+            <span class="tb-card-icon">🔥</span>
+            <span class="tb-card-week">W05</span>
+          </div>
+          <div class="tb-card-name">Fireflies AI</div>
+          <div class="tb-card-desc">Every meeting, automatically transcribed and summarized. Never miss a follow-up or forget a key detail again.</div>
+          <div class="tb-tags">
+            <span class="tb-tag">Meetings</span><span class="tb-tag">Productivity</span><span class="tb-tag">Notes</span>
+          </div>
+          <div class="tb-card-footer">
+            <span class="tb-card-audience aud-founders">🚀 Founders</span>
+            <span class="tb-card-link">↗</span>
+          </div>
+        </a>
+
+        <!-- No results -->
+        <div class="no-results" id="no-results">
+          <div class="no-results-title">No tools found.</div>
+          <div class="no-results-sub">Try a different keyword or clear your filters.</div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1.5px solid var(--black);padding:var(--space-8) 0;" role="contentinfo">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);">
+        <a href="index.html" class="nav-logo">
+          <span class="nav-logo-main">AERA</span><span class="nav-logo-sub">by Sai</span>
+        </a>
+        <nav style="display:flex;gap:var(--space-6);flex-wrap:wrap;">
+          <a href="index.html" style="font-size:12px;color:var(--muted);">Home</a>
+          <a href="weeks.html" style="font-size:12px;color:var(--muted);">Weeks</a>
+          <a href="toolbox.html" style="font-size:12px;color:var(--black);font-weight:700;">Toolbox</a>
+          <a href="lab.html" style="font-size:12px;color:var(--muted);">Lab</a>
+          <a href="about.html" style="font-size:12px;color:var(--muted);">About</a>
+        </nav>
+        <p style="font-size:12px;color:var(--muted-light);">© 2026 AERA by Sai</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+    // Hamburger
+    const hamburger = document.getElementById('nav-hamburger');
+    const drawer = document.getElementById('mobile-drawer');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      drawer.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('open'); drawer.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }));
+    // Reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); ro.unobserve(e.target); } }), { threshold: 0.08 });
+    reveals.forEach(el => ro.observe(el));
+
+    // Filter + search
+    const cards = Array.from(document.querySelectorAll('.tb-card'));
+    const countEl = document.getElementById('results-count');
+    const noResults = document.getElementById('no-results');
+    let activeFilter = 'all';
+    let searchQuery = '';
+
+    function applyFilters() {
+      let visible = 0;
+      cards.forEach(card => {
+        const aud = card.dataset.audience;
+        const name = card.dataset.name.toLowerCase();
+        const tags = card.dataset.tags.toLowerCase();
+        const matchFilter = activeFilter === 'all' || aud === activeFilter;
+        const matchSearch = !searchQuery || name.includes(searchQuery) || tags.includes(searchQuery);
+        if (matchFilter && matchSearch) { card.style.display = ''; visible++; }
+        else { card.style.display = 'none'; }
+      });
+      countEl.textContent = `Showing ${visible} tool${visible !== 1 ? 's' : ''}`;
+      noResults.classList.toggle('show', visible === 0);
+    }
+
+    document.querySelectorAll('.filter-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    document.getElementById('tb-search').addEventListener('input', e => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      applyFilters();
+    });
+
+    document.getElementById('focus-search-btn').addEventListener('click', () => {
+      document.getElementById('tb-search').focus();
+    });
+  </script>
+</body>
+</html>
